@@ -60,7 +60,11 @@ function renderApplications() {
     const card = template.content.firstElementChild.cloneNode(true);
     $('h3', card).textContent = application.company;
     $('.role', card).textContent = application.role_title;
-    $('.date', card).textContent = application.application_date ? `Applied ${new Date(`${application.application_date}T00:00:00`).toLocaleDateString()}` : 'No date recorded';
+    $('.date', card).textContent = application.application_date
+  ? `Applied ${typeof application.application_date === 'string'
+      ? application.application_date.split('T')[0]
+      : application.application_date.toLocaleDateString()}`
+  : 'No date recorded';
     const status = $('.status', card); status.textContent = application.status; status.classList.add(`status-${application.status}`);
     $('.score', card).textContent = `${application.match_score}% match`;
     $('.missing', card).textContent = application.missing_skills.length ? `Gaps: ${application.missing_skills.join(', ')}` : 'No detected gaps';
