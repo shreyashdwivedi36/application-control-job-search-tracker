@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A focused job-application tracker with skill-gap analysis.">
+  <title>Application Control | Job Search Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div><p class="eyebrow">APPLICATION CONTROL</p><h1>Make every application more intentional.</h1><p class="lead">Track your search, compare each role against your skills, and learn which gaps recur.</p></div>
+      <div class="hero-metric"><span id="application-count">0</span><small>applications tracked</small></div>
+    </header>
+    <p id="message" class="message" role="status" aria-live="polite" hidden></p>
+    <section class="panel profile-panel">
+      <div><p class="section-kicker">Your profile</p><h2>Skills you bring</h2><p class="muted">Saved locally in this browser and used for every match score.</p></div>
+      <label class="profile-input"><span>Your technical skills</span><input id="profile-skills" autocomplete="off" placeholder="JavaScript, Node.js, SQL"><small>Separate skills with commas.</small></label>
+    </section>
+    <section class="panel form-panel">
+      <div class="section-heading"><div><p class="section-kicker">Application workspace</p><h2 id="form-title">Add an application</h2></div><button id="cancel-edit" class="button secondary" type="button" hidden>Cancel edit</button></div>
+      <form id="application-form">
+        <div class="grid two"><label>Company<input name="company" maxlength="150" required></label><label>Role<input name="roleTitle" maxlength="150" required></label><label>Status<select name="status"><option value="saved">Saved</option><option value="applied">Applied</option><option value="interviewing">Interviewing</option><option value="offer">Offer</option><option value="rejected">Rejected</option><option value="withdrawn">Withdrawn</option></select></label><label>Application date<input type="date" name="applicationDate"></label></div>
+        <label>Job description<textarea name="jobDescription" rows="8" maxlength="25000" placeholder="Paste the job description here. The matcher will find tracked skills."></textarea></label>
+        <label>Notes<textarea name="notes" rows="3" maxlength="10000" placeholder="Contact, referral, next step, or anything worth remembering."></textarea></label>
+        <div class="form-actions"><button id="save-button" class="button" type="submit">Save application</button><span class="muted">Your profile skills are applied automatically.</span></div>
+      </form>
+      <div id="analysis" class="analysis" aria-live="polite"></div>
+    </section>
+    <section class="dashboard-grid">
+      <article class="panel"><p class="section-kicker">Search performance</p><h2>Outcome performance</h2><div id="outcomes" class="outcomes"></div></article>
+      <article class="panel"><p class="section-kicker">Priorities</p><h2>Recurring skill gaps</h2><p class="muted">Across applied and rejected roles.</p><div id="gaps" class="gaps"></div></article>
+    </section>
+    <section class="panel applications-panel"><div class="section-heading"><div><p class="section-kicker">Your pipeline</p><h2>Applications</h2></div><label class="search"><span class="sr-only">Search applications</span><input id="search" type="search" placeholder="Search company or role"></label></div><div id="applications" class="application-list"></div></section>
+  </main>
+  <template id="application-template"><article class="application-card"><div class="application-main"><div class="application-title"><h3></h3><span class="status"></span></div><p class="role muted"></p><p class="date muted"></p><div class="skill-row"><span class="score"></span><span class="missing muted"></span></div></div><div class="card-actions"><button class="icon-button edit" type="button">Edit</button><button class="icon-button danger delete" type="button">Delete</button></div></article></template>
+  <script src="app.js"></script>
+</body>
+</html>
