@@ -17,6 +17,20 @@ Application Control is a full-stack job-search tracker that connects every saved
 3. The app extracts tracked skills, scores the match, and records matched and missing skills with the application.
 4. Use the dashboard to review average match score by outcome and the gaps that occur most often in applied or rejected roles.
 
+## Screenshots
+
+### Dashboard
+
+![Application Control Dashboard](docs/dashboard.png)
+
+### Application Workspace
+
+![Application Workspace](docs/application-workspace.png)
+
+### Analytics
+
+![Application Analytics](docs/analytics.png)
+
 ## Run locally
 
 ### With Docker (fastest)
