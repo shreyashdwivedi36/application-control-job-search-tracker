@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const pool = require('./db');
+const { pool, initializeDatabase } = require('./db');
 const { matchSkills } = require('./skillMatcher');
 
 const statuses = new Set(['saved', 'applied', 'interviewing', 'offer', 'rejected', 'withdrawn']);
@@ -105,7 +105,9 @@ function createApp() {
 
 if (require.main === module) {
   const port = Number(process.env.PORT || 3000);
-  createApp().listen(port, () => console.log(`Application Control running at http://localhost:${port}`));
+  initializeDatabase()
+    .then(() => createApp().listen(port, () => console.log(`Application Control running at http://localhost:${port}`)))
+    .catch((error) => { console.error('Database initialization failed:', error); process.exit(1); });
 }
 
 module.exports = { createApp, prepareApplication, parseJson };

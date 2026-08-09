@@ -64,6 +64,15 @@ Run `npm test`. The test suite covers match-score calculation, aliases, boundari
 
 The included `Dockerfile` is ready for any Docker-compatible host. Provision a managed MySQL 8 database, set `PORT`, `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, and `DB_NAME` as environment variables, and run `database/schema.sql` once against that database. Do not commit a `.env` file or real credentials.
 
+### Railway
+
+1. Create a Railway project and add a **MySQL** database service.
+2. Add a service from this GitHub repository. Railway detects the included `Dockerfile`.
+3. In the app service's Variables tab, set `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, and `DB_NAME` to the MySQL service's corresponding `MYSQLHOST`, `MYSQLPORT`, `MYSQLUSER`, `MYSQLPASSWORD`, and `MYSQLDATABASE` reference variables. The app also recognises those `MYSQL*` names directly.
+4. Generate a public domain under the app service's Networking settings.
+
+On first connection, the app creates its required tables and seed skills automatically.
+
 ## Resume description
 
 Built and deployed a full-stack job-application tracker using Node.js, Express, MySQL, Docker, and REST APIs; developed a skill-matching engine that parses job descriptions, scores candidate fit, and surfaces recurring gaps across application outcomes.
